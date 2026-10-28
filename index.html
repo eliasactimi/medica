@@ -94,7 +94,7 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':
 function overview(){
   const t = T[lang];
   return `<section><div class="eyebrow">${t.overviewEyebrow}</div><h1>${t.overviewTitle}</h1><p class="lead">${t.overviewLead}</p></section>
-  <section class="grid">${DATA.devices.map(d=>`<a class="card" href="#${d.id}"><img src="${d.id}.jpg" alt=""><div><strong>${esc(d.device)}</strong><br><span>${esc(lang==='de'?d.values_de:d.values_en)}</span></div></a>`).join('')}</section>
+  <section class="grid">${DATA.devices.map(d=>`<a class="card" href="#${d.id}"><img src="${d.id}_${lang}.jpg" alt=""><div><strong>${esc(d.device)}</strong><br><span>${esc(lang==='de'?d.values_de:d.values_en)}</span></div></a>`).join('')}</section>
   <p class="foot">${t.foot}</p>`;
 }
 function guide(d){
@@ -102,7 +102,7 @@ function guide(d){
   return `<a class="back" href="#start">${t.back}</a>
   <section><div class="eyebrow">${t.compatible}</div><h1>${esc(d.device)} <em>× Vitaliva</em></h1>
     <div class="meta"><span class="chip">${esc(d.partner)}</span><span class="chip">${t.values}: ${esc(lang==='de'?d.values_de:d.values_en)}</span><span class="chip">Bluetooth</span></div></section>
-  <section><video id="vid-${d.id}" src="${d.id}_${lang}.mp4" poster="${d.id}.jpg" controls playsinline preload="metadata"></video><div class="vcap">${t.video}</div></section>
+  <section><video id="vid-${d.id}" src="${d.id}_${lang}.mp4" poster="${d.id}_${lang}.jpg" controls playsinline preload="metadata"></video><div class="vcap">${t.video}</div></section>
   <section><h2>${t.steps}</h2><ol class="steps">${steps.map(s=>`<li><div><h3>${esc(s[lang][0])}</h3><p>${esc(s[lang][1])}</p></div></li>`).join('')}</ol></section>
   <aside class="tip"><b>${t.tip}</b>${esc(lang==='de'?d.tip_de:d.tip_en)}</aside>
   <p class="foot">${t.foot}</p>`;
